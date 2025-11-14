@@ -10,7 +10,8 @@ export default function Navbar() {
         <Link to="/predict" className="hover:text-orange-600 transition">Folk Songs</Link>
         <Link to="/timeline" className="hover:text-orange-600 transition">Timeline</Link>
         <Link to="/communityform" className="hover:text-orange-600 transition">Community Form</Link>
-        <Link to="/cultureexplorer" className="hover:text-orange-600 transition">Culture Explorer</Link>
+        
+        <Link to="/storytelling" className="hover:text-orange-600 transition">Story teller</Link>
       </div>
     </nav>
   );

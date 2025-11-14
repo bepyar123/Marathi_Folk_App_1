@@ -9,11 +9,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./pages/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
-
+import StoryTeller from "./pages/StoryTeller";
+// import Navbar from "./components/Navbar";
 function App() {
   return (
     <AuthProvider>
       <Router>
+        
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/predict" element={<FolkSongPrediction />} />
@@ -21,6 +23,8 @@ function App() {
           <Route path="/cultureexplorer" element={<CultureExplorer />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          <Route path="/storytelling" element={<StoryTeller />} />
 
           {/*  Protected Route */}
           <Route

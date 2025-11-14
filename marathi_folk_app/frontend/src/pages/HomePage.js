@@ -59,6 +59,9 @@ const HomePage = () => {
           <Link to="/cultureexplorer" className="hover:underline flex items-center gap-1">
             <Landmark size={18} /> संस्कृती अन्वेषक / Culture Explorer
           </Link>
+          <Link to="/storytelling" className="hover:underline flex items-center gap-1">
+          🧠 कथा सांगणारा / Story Teller
+          </Link>
 
           <Link
             to="/communityform"
