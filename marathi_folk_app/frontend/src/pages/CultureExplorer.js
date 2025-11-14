@@ -81,7 +81,7 @@ const CultureExplorer = () => {
           image: "/images/nath.jpg",
         },
         {
-          title: "हर आणि हिरवे चूड्यांचे संच",
+          title: " हिरवे चूड्यांचे संच",
           description:
             "विवाहित स्त्रियांसाठी शुभ आणि समृद्धीचे प्रतीक.",
           location: "संपूर्ण महाराष्ट्र",
@@ -89,7 +89,7 @@ const CultureExplorer = () => {
           image: "/images/green_bangles.jpg",
         },
         {
-          title: "कोकणी पायजामा-चोली",
+          title: "कोकणी पयजामा",
           description: "कोकणातील पारंपरिक महिला पोशाख, हलके आणि आरामदायक.",
           location: "कोकण",
           tags: ["परंपरा", "सौंदर्य"],
@@ -101,13 +101,6 @@ const CultureExplorer = () => {
           location: "नारायण पेठ, पुणे",
           tags: ["महिला पोशाख", "परंपरा"],
           image: "/images/narayan_peth_saree.jpg",
-        },
-        {
-          title: "करवत साडी",
-          description: "करवत गावातील पारंपरिक साडी — हाताने विणलेली, उत्सव आणि समारंभांसाठी उपयुक्त.",
-          location: "करवत, महाराष्ट्र",
-          tags: ["महिला पोशाख", "सण", "हस्तकला"],
-          image: "/images/karvat_saree.jpg",
         },
        ],
       festivals: [
@@ -410,7 +403,7 @@ const CultureExplorer = () => {
         },
 
         {
-          title: "Konkan Pyjama-Choli",
+          title: "Konkan Pyjama",
           description: "Traditional women’s attire from Konkan, lightweight and comfortable.",
           location: "Konkan",
           tags: ["Tradition", "Beauty"],
@@ -422,13 +415,6 @@ const CultureExplorer = () => {
           location: "Narayan Peth, Pune",
           tags: ["Women's Wear", "Tradition"],
           image: "/images/narayan_peth_saree.jpg",
-        },
-        {
-          title: "Karvat Saree",
-          description: "Handwoven traditional saree from Karvat village — ideal for celebrations and ceremonies.",
-          location: "Karvat, Maharashtra",
-          tags: ["Women's Wear", "Festival", "Handicraft"],
-          image: "/images/karvat_saree.jpg",
         },
       ],
       festivals: [
@@ -672,10 +658,10 @@ const CultureExplorer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fff6f0] flex flex-col items-center px-6 py-10">
+    <div className="min-h-screen bg-orange-50 flex flex-col items-center justify-center p-8">
       {/* Heading & Language Toggle */}
-      <div className="flex justify-between items-center w-full max-w-5xl mb-6">
-        <h1 className="text-4xl font-extrabold text-center flex-1">
+      <div className="flex justify-between items-center w-full max-w-5xl mb-6 mt-8">
+        <h1 className="text-4xl font-extrabold text-center flex-1 text-orange-600 ">
           {heading[language]}
         </h1>
         <button
@@ -687,7 +673,7 @@ const CultureExplorer = () => {
       </div>
 
       {/* Subtitle */}
-      <p className="text-gray-700 text-center max-w-3xl mb-10 leading-relaxed">
+      <p className="text-gray-700 text-center mb-6">
         {language === "mr"
           ? "महाराष्ट्राच्या समृद्ध वारशाचा शोध घ्या — पोशाख, सण, खाद्यपदार्थ आणि परंपरा."
           : "Explore Maharashtra’s rich heritage — from attire and festivals to cuisine and traditions."}
