@@ -118,36 +118,64 @@ const StoryTeller = () => {
         कथा संग्रह
       </h1>
 
-      {/* 🔥 LANGUAGE TOGGLE BUTTON (centered above categories) */}
+      {/* 🔥 LANGUAGE TOGGLE BUTTON */}
       <button
         onClick={toggleLang}
-        className="mb-4 bg-orange-700 text-white px-6 py-2 rounded-full font-semibold shadow"
+        className="mb-6 bg-orange-700 text-white px-6 py-2 rounded-full font-semibold shadow"
       >
-        {lang === "mr" ? "English" : "मराठी"}
+        {lang === "mr" ? " English" : "मराठी"}
       </button>
 
-      {/* CATEGORY BUTTONS */}
+      {/* CATEGORY BUTTONS WITH ICONS */}
       <div className="flex gap-4 mb-6">
-        {["historical", "folklore", "spiritual"].map((cat) => (
-          <button
-            key={cat}
-            onClick={() => {
-              setCategory(cat);
-              setStory(null);
-            }}
-            className={`px-4 py-2 rounded-xl font-semibold ${
-              category === cat ? "bg-orange-600 text-white" : "bg-white border"
-            }`}
-          >
-            {cat === "historical" && (lang === "mr" ? "ऐतिहासिक" : "Historical")}
-            {cat === "folklore" && (lang === "mr" ? "लोककथा" : "Folklore")}
-            {cat === "spiritual" && (lang === "mr" ? "आध्यात्मिक" : "Spiritual")}
-          </button>
-        ))}
+
+        {/* ⚔️ Historical */}
+        <button
+          onClick={() => {
+            setCategory("historical");
+            setStory(null);
+          }}
+          className={`px-4 py-3 rounded-xl font-semibold flex flex-col items-center w-32 ${
+            category === "historical" ? "bg-orange-600 text-white" : "bg-white border"
+          }`}
+        >
+          <span className="text-2xl">⚔️</span>
+          {lang === "mr" ? "ऐतिहासिक" : "Historical"}
+        </button>
+
+        {/* 🎭 Folklore */}
+        <button
+          onClick={() => {
+            setCategory("folklore");
+            setStory(null);
+          }}
+          className={`px-4 py-3 rounded-xl font-semibold flex flex-col items-center w-32 ${
+            category === "folklore" ? "bg-orange-600 text-white" : "bg-white border"
+          }`}
+        >
+          <span className="text-2xl">🎭</span>
+          {lang === "mr" ? "लोककथा" : "Folklore"}
+        </button>
+
+        {/* 🙏 Spiritual */}
+        <button
+          onClick={() => {
+            setCategory("spiritual");
+            setStory(null);
+          }}
+          className={`px-4 py-3 rounded-xl font-semibold flex flex-col items-center w-32 ${
+            category === "spiritual" ? "bg-orange-600 text-white" : "bg-white border"
+          }`}
+        >
+          <span className="text-2xl">🙏</span>
+          {lang === "mr" ? "आध्यात्मिक" : "Spiritual"}
+        </button>
+
       </div>
 
       {/* STORY BOX */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-xl text-lg leading-relaxed">
+      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-4xl text-lg leading-relaxed">
+
         {story ? (
           <div>
             <h2 className="text-2xl font-bold text-orange-700 mb-3">
