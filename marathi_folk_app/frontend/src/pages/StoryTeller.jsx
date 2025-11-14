@@ -1,93 +1,93 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import stories from "../data/stories";
 
 const StoryTeller = () => {
-  const [keywords, setKeywords] = useState("");
-  const [story, setStory] = useState("");
-  const [audioUrl, setAudioUrl] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [category, setCategory] = useState("historical");
+  const [story, setStory] = useState(null);
+  const [language, setLanguage] = useState("mr"); // "mr" or "en"
 
-  const handleGenerateStory = async () => {
-    if (!keywords.trim()) {
-      setError("कृपया कीवर्ड भरा!");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-    setStory("");
-    setAudioUrl("");
-
-    try {
-      const response = await fetch("https://pranjalpatil766-5000.app.github.dev/story", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ keywords }),
-      });
-
-      if (!response.ok) throw new Error("Server error!");
-
-      const data = await response.json();
-      setStory(data.story);
-      setAudioUrl(data.audio_url);
-    } catch (err) {
-      console.error(err);
-      setError("सर्व्हरशी संपर्क होत नाही. कृपया पुन्हा प्रयत्न करा!");
-    } finally {
-      setLoading(false);
-    }
+  const generateStory = () => {
+    const list = stories[category];
+    const randomStory = list[Math.floor(Math.random() * list.length)];
+    setStory(randomStory);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-orange-100 to-yellow-200 p-6">
-      <motion.h1
-        className="text-3xl font-bold text-orange-700 mb-6"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        🎙️ कथा तयार करा
-      </motion.h1>
+    <div className="min-h-screen bg-orange-50 flex flex-col items-center p-6">
+      
+      <h1 className="text-3xl font-bold text-orange-700 mb-4">
+        कथा संग्रह / Story Collection
+      </h1>
 
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6">
-        <textarea
-          className="border p-3 rounded-lg w-full text-lg mb-4"
-          rows="3"
-          placeholder="उदा: शिवाजी युद्ध, संत तुकाराम, पावसाळा..."
-          value={keywords}
-          onChange={(e) => setKeywords(e.target.value)}
-        />
-
+      {/* Language Toggle */}
+      <div className="flex gap-4 mb-4">
         <button
-          onClick={handleGenerateStory}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded w-full"
-          disabled={loading}
+          onClick={() => setLanguage("mr")}
+          className={`px-4 py-2 rounded-xl font-semibold ${
+            language === "mr" ? "bg-orange-600 text-white" : "bg-white border"
+          }`}
         >
-          {loading ? "कथा तयार होत आहे..." : "कथा तयार करा 🎤"}
+          मराठी
         </button>
 
-        {error && <p className="text-red-600 font-medium mt-3">{error}</p>}
+        <button
+          onClick={() => setLanguage("en")}
+          className={`px-4 py-2 rounded-xl font-semibold ${
+            language === "en" ? "bg-orange-600 text-white" : "bg-white border"
+          }`}
+        >
+          English
+        </button>
+      </div>
 
-        {story && (
-          <motion.div
-            className="mt-4 bg-orange-50 p-4 rounded-lg shadow-inner"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+      {/* Category Menu */}
+      <div className="flex gap-4 mb-6">
+        {["historical", "folklore", "spiritual"].map((cat) => (
+          <button
+            key={cat}
+            onClick={() => {
+              setCategory(cat);
+              setStory(null);
+            }}
+            className={`px-4 py-2 rounded-xl font-semibold ${
+              category === cat ? "bg-orange-600 text-white" : "bg-white border"
+            }`}
           >
-            <h2 className="text-xl font-semibold text-orange-700 mb-2">
-              ✨ तयार कथा:
-            </h2>
-            <p className="text-gray-800 leading-relaxed">{story}</p>
+            {cat === "historical" && (language === "mr" ? "ऐतिहासिक" : "Historical")}
+            {cat === "folklore" && (language === "mr" ? "लोककथा" : "Folklore")}
+            {cat === "spiritual" && (language === "mr" ? "आध्यात्मिक" : "Spiritual")}
+          </button>
+        ))}
+      </div>
 
-            {audioUrl && (
-              <audio controls className="mt-3 w-full">
-                <source src={audioUrl} type="audio/mpeg" />
-                तुमचा ब्राउझर ऑडिओ ऐकवू शकत नाही.
-              </audio>
-            )}
-          </motion.div>
+      {/* Story Box */}
+      <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-xl text-lg leading-relaxed">
+        {story ? (
+          <div>
+            <h2 className="text-2xl font-bold text-orange-700 mb-3">
+              {story.title[language]}
+            </h2>
+
+            <p className="whitespace-pre-line">
+              {story.story[language]}
+            </p>
+          </div>
+        ) : (
+          <span className="text-gray-500">
+            {language === "mr"
+              ? "कथा पाहण्यासाठी खालील बटणावर क्लिक करा"
+              : "Click the button below to see a story"}
+          </span>
         )}
       </div>
+
+      {/* New Story Button */}
+      <button
+        onClick={generateStory}
+        className="mt-6 bg-orange-600 text-white font-bold px-6 py-3 rounded-full shadow-md"
+      >
+        {language === "mr" ? "नवीन कथा तयार करा" : "Generate New Story"}
+      </button>
     </div>
   );
 };
